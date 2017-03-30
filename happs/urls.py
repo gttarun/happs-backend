@@ -19,10 +19,12 @@ from rest_framework import routers, serializers, viewsets
 from django.conf.urls import include, url
 from django.contrib import admin
 from users import views as uviews
+from events import views as eviews
 
 router = routers.DefaultRouter()
 router.register(r'api/users', uviews.UserViewSet)
 router.register(r'api/friends', uviews.FriendsViewSet)
+router.register(r'api/events', eviews.EventViewSet)
 admin.autodiscover()
 
 urlpatterns = [

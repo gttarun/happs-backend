@@ -14,4 +14,7 @@ class User(models.Model):
 class Friends(models.Model):
 	created = models.DateTimeField(auto_now_add=True, editable=False)
 	creator = models.ForeignKey(User, related_name="friendship_creator_set")
-	friend = models.ForeignKey(User, related_name="friend_set")
+
+	# need to FIX this relationship (it's one-sided)
+	# maybe I can add a query to filter all of a user's friends
+	friend = models.ForeignKey(User, related_name="friend_set") 
