@@ -34,7 +34,7 @@ class EventsViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def search(request):
-        queryset_list = userevents.objects.all() 
+        queryset_list = Event.objects.all() 
         query = request.GET.get("q")
         if query:
             queryset_list = queryset_list.filter(
@@ -49,26 +49,26 @@ class EventsViewSet(viewsets.ModelViewSet):
 
     
 def event(request, pk):
-    queryset = userevents.objects.get(pk)
+    queryset = Event.objects.get(pk)
     serializer = EventSerializer
     return Response(serializer.data)
 
 
 
 class EventDetailAPIView(RetrieveAPIView):
-    queryset = userevents.objects.all()
+    queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 class EventUpdateAPIView(UpdateAPIView):
-    queryset = userevents.objects.all()
+    queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 class EventDestroyAPIView(DestroyAPIView):
-    queryset = userevents.objects.all()
+    queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 class EventListAPIView(ListAPIView):
-    queryset = userevents.objects.all()
+    queryset = Event.objects.all()
     serializer_class = EventSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('event_name', 
