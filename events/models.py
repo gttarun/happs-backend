@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.core.validators import URLValidator
+
 
 # Create your models here.
 class Event(models.Model):
@@ -12,7 +14,7 @@ class Event(models.Model):
 	description = models.TextField()
 	longitude = models.CharField(max_length=255)
 	latitude = models.CharField(max_length=255)
-	picture = models.URLField(blank=True)
+	picture = models.TextField(validators=[URLValidator()])
 
 	def __str__(self):
 		return self.event_name
