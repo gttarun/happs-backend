@@ -12,6 +12,7 @@ class Event(models.Model):
 	description = models.TextField()
 	longitude = models.CharField(max_length=255)
 	latitude = models.CharField(max_length=255)
+	picture = models.URLField()
 
 	def __str__(self):
 		return self.event_name
