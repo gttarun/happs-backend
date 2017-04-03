@@ -13,7 +13,7 @@ from .serializers import EventSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
-class EventsViewSet(viewsets.ModelViewSet):
+class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     filter_backends = (DjangoFilterBackend,)
