@@ -2,7 +2,7 @@ from rest_framework import viewsets, status, permissions
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, detail_route, list_route
 from rest_framework.response import Response
-from .models import userevents
+from .models import Event
 from rest_framework.generics import (
         DestroyAPIView,
         ListAPIView,
@@ -14,7 +14,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
 class EventsViewSet(viewsets.ModelViewSet):
-    queryset = userevents.objects.all()
+    queryset = Event.objects.all()
     serializer_class = EventSerializer
     filter_backends = (DjangoFilterBackend,)
     filter_fields = ('event_name', 
@@ -53,14 +53,7 @@ def event(request, pk):
     serializer = EventSerializer
     return Response(serializer.data)
 
-def get_user(request, image_id):
-    db_image = UserModel.objects.get(pk=image_id)
-    image = "../" + str(db_image.datafile)
-    return render(request, 'upload/show_image.html', {'image': image})
 
-def get_event(request, image_id):
-    db_image = EventModel.objects.get(pk=image_id)
-    image = "../" + str(db_image.datafile)
 
 class EventDetailAPIView(RetrieveAPIView):
     queryset = userevents.objects.all()
@@ -84,4 +77,5 @@ class EventListAPIView(ListAPIView):
             'start_time', 
             'end_time', 
             'host', 
-            'description',)
+            'description',
+            'picture',)
